@@ -2,9 +2,16 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const constantRoutes: RouteRecordRaw[] = [
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue'),
+    meta: {
+      hidden: true
+    }
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/404.vue'),
     meta: {
       hidden: true
     }
