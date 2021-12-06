@@ -11,12 +11,50 @@
       <div class="title-container">
         <h3 class="title">Login Form</h3>
       </div>
+
+      <el-form-item prop="username">
+        <span class="svg-container">
+          <svg-icon icon-class="user" />
+        </span>
+        <el-input
+          ref="username"
+          v-model="loginForm.username"
+          placeholder="Username"
+          name="username"
+          type="text"
+          tabindex="1"
+          auto-complete="on"
+        />
+      </el-form-item>
+
+      <el-form-item prop="password">
+        <span class="svg-container">
+          <svg-icon icon-class="password" />
+        </span>
+        <el-input
+          :key="passwordType"
+          ref="passwordRef"
+          v-model="loginForm.password"
+          :type="passwordType"
+          placeholder="Password"
+          name="password"
+          tabindex="2"
+          auto-complete="on"
+          @keyup.enter="handleLogin"
+        />
+        <span class="show-pwd" @click="showPwd">
+          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+        </span>
+      </el-form-item>
+
+      <el-button :loading="loading" type="primary" size="medium" style="width:100%;margin-bottom:30px;" @click.prevent="handleLogin">Login</el-button>
+
     </el-form>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue'
+import { nextTick, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const validateUsername = (rule: any, value: any, callback: () => void) => {
@@ -37,18 +75,30 @@ const loginRules = reactive({
 })
 const loading = ref<boolean>(false)
 const passwordType = ref<string>('password')
-const redirect = ref<string>('')
+const redirect = ref<string | null | undefined>(undefined)
 
 
 const route = useRoute()
 watch(route, (route) => {
     const query = route.query
     if (query) {
-      redirect.value = query.redirect
+      redirect.value = query.redirect?.toString()
     }
   },
   { immediate: true }
 )
+
+const passwordRef = ref(null)
+const showPwd = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = ''
+  } else {
+    passwordType.value = 'password'
+  }
+  nextTick(() => {
+    passwordRef.value!.focus()
+  })
+}
 
 
 </script>
