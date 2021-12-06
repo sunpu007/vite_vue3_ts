@@ -103,13 +103,13 @@ module.exports = {
     // 强制回调函数最大嵌套深度
     "max-nested-callbacks": ["warn", 3],
     // 强制函数定义中最多允许的参数数量
-    "max-params": ["warn", 3],
+    // "max-params": ["warn", 3],
     // 强制每一行中所允许的最大语句数量
     "max-statements-per-line": ["warn", { max: 1 }],
     // 要求方法链中每个调用都有一个换行符
     "newline-per-chained-call": ["warn", { ignoreChainWithDepth: 3 }],
     // 禁止 if 作为唯一的语句出现在 else 语句中
-    "no-lonely-if": "warn",
+    // "no-lonely-if": "warn",
     // 禁止空格和 tab 的混合缩进
     "no-mixed-spaces-and-tabs": "warn",
     // 禁止出现多行空行

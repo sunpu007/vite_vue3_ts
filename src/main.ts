@@ -10,9 +10,11 @@ import 'element-plus/dist/index.css'
 import '@/styles/index.scss' // global css
 
 import App from "./App.vue"
-import router from './router/router'
+import router from './router'
 
 import svgIcon from './components/svgIcon/index.vue'
+
+import '@/permission'
 
 const app = createApp(App)
 
