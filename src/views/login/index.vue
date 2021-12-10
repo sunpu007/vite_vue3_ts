@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form
-      ref="loginForm"
+      ref="loginFormRef"
       :model="loginForm"
       :rules="loginRules"
       class="login-form"
@@ -72,7 +72,7 @@ import { useRoute } from 'vue-router'
 const validateUsername = (rule: any, value: any, callback: () => void) => {
   callback()
 }
-const validatePassword = (rule: any, value: string|any[], callback: (arg0: Error|undefined) => void) => {
+const validatePassword = (rule: any, value: string, callback: (arg0: Error|undefined) => void) => {
   if (value.length < 6) {
     callback(new Error('The password can not be less than 6 digits'))
   } else {
@@ -80,11 +80,16 @@ const validatePassword = (rule: any, value: string|any[], callback: (arg0: Error
   }
 }
 
-const loginForm = reactive({ username: 'admin', password: '123456' })
+let loginForm = reactive({
+  username: 'admin',
+  password: '123456'
+})
+
 const loginRules = reactive({
   username: [{ required: true, trigger: 'blur', validator: validateUsername }],
   password: [{ required: true, trigger: 'blur', validator: validatePassword }]
 })
+
 const loading = ref<boolean>(false)
 const passwordType = ref<string>('password')
 const redirect = ref<string | null | undefined>(undefined)
