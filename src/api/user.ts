@@ -1,7 +1,6 @@
 import request, { ResType } from '@/utils/request'
-import { AxiosPromise } from 'axios'
 
-export function login(data: object): AxiosPromise<ResType<any>> {
+export function login(data: object) {
   return request({
     url: '/login',
     method: 'post',
@@ -9,7 +8,7 @@ export function login(data: object): AxiosPromise<ResType<any>> {
   })
 }
 
-export function getInfo(token: string): AxiosPromise<ResType<any>> {
+export function getInfo(token: string) {
   return request({
     url: '/login/info',
     method: 'get',
@@ -17,7 +16,7 @@ export function getInfo(token: string): AxiosPromise<ResType<any>> {
   })
 }
 
-export function logout(): AxiosPromise<ResType<any>> {
+export function logout() {
   return request({
     url: '/logout',
     method: 'post'

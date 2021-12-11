@@ -67,8 +67,12 @@
 
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+
 import { validUsername } from '@/utils/validate'
+
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
 
 const validateUsername = (rule: any, value: any, callback: (arg0?: Error|undefined) => void) => {
   if (!validUsername(value)) {
@@ -127,7 +131,12 @@ const handleLogin = () => {
   loginFormRef.value.validate((valid: boolean) => {
     if (valid) {
       loading.value = true
-      // console.log('========>')
+      userStore.login(loginForm).then(() => {
+        // useRouter().push({ path: redirect.value || '/' })
+        loading.value = false
+      }).catch(() => {
+        loading.value = false
+      })
       setTimeout(_ => {
         loading.value = false
       }, 2000)

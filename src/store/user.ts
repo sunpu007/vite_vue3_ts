@@ -1,5 +1,5 @@
-import { logout } from '@/api/user'
-import { getToken, removeToken } from '@/utils/auth'
+import { login, logout } from '@/api/user'
+import { getToken, removeToken, setToken } from '@/utils/auth'
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore({
@@ -15,7 +15,22 @@ export const useUserStore = defineStore({
       this.name = ''
       this.avatar = ''
     },
-    
+
+    // user login
+    login(userInfo: { username: string; password: string }) {
+      const { username, password } = userInfo
+      return new Promise<void>((resolve, reject) => {
+        login({ username: username.trim(), password: password }).then(response => {
+          const { data } = response
+          this.token = data.token
+          setToken(data.token)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+
     logout() {
       return new Promise<void>((resolve, reject) => {
         logout().then(() => {
