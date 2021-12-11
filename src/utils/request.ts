@@ -2,8 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 import { ElMessage, ElMessageBox } from 'element-plus'
 
-import { useUserStore } from '@/store/user'
-const userStore = useUserStore()
+import { userStore } from '@/store/user'
 
 import { getToken } from './auth'
 

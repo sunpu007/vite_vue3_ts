@@ -53,3 +53,5 @@ export const useUserStore = defineStore({
     }
   }
 })
+
+export const userStore = useUserStore()
