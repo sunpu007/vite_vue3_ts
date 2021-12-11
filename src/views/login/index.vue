@@ -19,7 +19,7 @@
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          ref="username"
+          ref="usernameRef"
           v-model="loginForm.username"
           placeholder="Username"
           name="username"
@@ -68,19 +68,24 @@
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { validUsername } from '@/utils/validate'
 
-const validateUsername = (rule: any, value: any, callback: () => void) => {
-  callback()
+const validateUsername = (rule: any, value: any, callback: (arg0?: Error|undefined) => void) => {
+  if (!validUsername(value)) {
+    callback(new Error('Please enter the correct user name'))
+  } else {
+    callback()
+  }
 }
-const validatePassword = (rule: any, value: string, callback: (arg0: Error|undefined) => void) => {
+const validatePassword = (rule: any, value: string, callback: (arg0?: Error|undefined) => void) => {
   if (value.length < 6) {
     callback(new Error('The password can not be less than 6 digits'))
   } else {
-    callback(undefined)
+    callback()
   }
 }
 
-let loginForm = reactive({
+const loginForm = reactive({
   username: 'admin',
   password: '123456'
 })
@@ -105,7 +110,7 @@ watch(route, (route) => {
   { immediate: true }
 )
 
-const passwordRef = ref(null)
+const passwordRef: any = ref(null)
 const showPwd = () => {
   if (passwordType.value === 'password') {
     passwordType.value = ''
@@ -113,7 +118,16 @@ const showPwd = () => {
     passwordType.value = 'password'
   }
   nextTick(() => {
-    passwordRef.value!.focus()
+    passwordRef.value.focus()
+  })
+}
+
+const loginFormRef: any = ref(null)
+const handleLogin = () => {
+  loginFormRef.value.validate((valid: boolean) => {
+    if (valid) {
+      // console.log('========>')
+    }
   })
 }
 
