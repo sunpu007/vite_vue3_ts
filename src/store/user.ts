@@ -1,7 +1,7 @@
 import { getToken, removeToken } from '@/utils/auth'
 import { defineStore } from 'pinia'
 
-export const useMainStore = defineStore({
+export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
     token: getToken()

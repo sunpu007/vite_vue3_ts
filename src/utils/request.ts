@@ -2,8 +2,8 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 import { ElMessage, ElMessageBox } from 'element-plus'
 
-import { useMainStore } from '@/store/main'
-const mainStore = useMainStore()
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
 
 import { getToken } from './auth'
 
@@ -15,7 +15,7 @@ const service = axios.create({
 // 请求拦截
 service.interceptors.request.use(
   (config: AxiosRequestConfig<any>): AxiosRequestConfig<any> => {
-    if (mainStore.token) {
+    if (userStore.token) {
       // @ts-ignore
       config.headers.token = getToken()
     }
@@ -45,6 +45,9 @@ service.interceptors.response.use(
         type: 'warning'
       }).then(_ => {
         // 清除token
+        userStore.resetToken().then(_ => {
+          location.reload()
+        })
       })
       return Promise.reject(new Error(res.message || 'Error'))
     } 
