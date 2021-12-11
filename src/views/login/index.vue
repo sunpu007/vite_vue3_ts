@@ -71,8 +71,8 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { validUsername } from '@/utils/validate'
 
-import { useUserStore } from '@/store/user'
-const userStore = useUserStore()
+// import { useUserStore } from '@/store/user'
+// const userStore = useUserStore()
 
 const validateUsername = (rule: any, value: any, callback: (arg0?: Error|undefined) => void) => {
   if (!validUsername(value)) {
@@ -103,7 +103,6 @@ const loading = ref<boolean>(false)
 const passwordType = ref<string>('password')
 const redirect = ref<string | null | undefined>(undefined)
 
-
 const route = useRoute()
 watch(route, (route) => {
     const query = route.query
@@ -131,15 +130,12 @@ const handleLogin = () => {
   loginFormRef.value.validate((valid: boolean) => {
     if (valid) {
       loading.value = true
-      userStore.login(loginForm).then(() => {
-        // useRouter().push({ path: redirect.value || '/' })
-        loading.value = false
-      }).catch(() => {
-        loading.value = false
-      })
-      setTimeout(_ => {
-        loading.value = false
-      }, 2000)
+      // userStore.login(loginForm).then(() => {
+      //   // useRouter().push({ path: redirect.value || '/' })
+      //   loading.value = false
+      // }).catch(() => {
+      //   loading.value = false
+      // })
     }
   })
 }
