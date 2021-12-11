@@ -19,6 +19,14 @@ export default defineConfig({
       ext: '.gz'
     })
   ],
+  server: {
+    proxy: {
+      [process.env.VITE_APP_BASE_API]: {
+        target: `http://admin-demo.myjerry.cn`,
+        changeOrigin: true
+      },
+    }
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),

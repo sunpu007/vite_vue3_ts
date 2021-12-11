@@ -7,6 +7,12 @@ const userStore = useUserStore()
 
 import { getToken } from './auth'
 
+export interface ResType<T> {
+  code: number
+  data?: T
+  message: string
+}
+
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API?.toString(),
   timeout: 5000,
@@ -29,7 +35,7 @@ service.interceptors.request.use(
 // 相应拦截
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const res = response.data
+    const res: ResType<any> = response.data
     if (res.code !== 0) {
       ElMessage({
         message: res.message || 'Error',
@@ -62,11 +68,5 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
-export interface ResType<T> {
-  code: number
-  data?: T
-  message: string
-}
 
 export default service

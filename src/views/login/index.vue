@@ -126,7 +126,11 @@ const loginFormRef: any = ref(null)
 const handleLogin = () => {
   loginFormRef.value.validate((valid: boolean) => {
     if (valid) {
+      loading.value = true
       // console.log('========>')
+      setTimeout(_ => {
+        loading.value = false
+      }, 2000)
     }
   })
 }

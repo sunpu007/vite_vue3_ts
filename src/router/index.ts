@@ -18,11 +18,18 @@ const constantRoutes: RouteRecordRaw[] = [
   }
 ]
 
-const router = createRouter({
+const generateRouter = () => createRouter({
   history: createWebHistory(),
   scrollBehavior: () => ({ top: 0 }),
   routes: constantRoutes
 })
+
+const router = generateRouter()
+
+// export function resetRouter() {
+//   const newRouter = generateRouter()
+//   router.matcher = newRouter.matcher
+// }
 
 export default router
 
