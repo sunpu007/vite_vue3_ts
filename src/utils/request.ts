@@ -13,7 +13,7 @@ export interface ResType<T> {
 }
 
 const service = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API?.toString(),
+  baseURL: import.meta.env.VITE_APP_BASE_API.toString(),
   timeout: 5000,
 })
 

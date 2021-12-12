@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
+import Layout from '@/layout/index.vue'
+
 const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/login',
@@ -15,7 +17,18 @@ const constantRoutes: RouteRecordRaw[] = [
     meta: {
       hidden: true
     }
-  }
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [{
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: 'Dashboard', icon: 'dashboard' }
+    }]
+  },
 ]
 
 const generateRouter = () => createRouter({

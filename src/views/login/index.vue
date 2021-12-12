@@ -72,6 +72,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { validUsername } from '@/utils/validate'
 
 import { userStore } from '@/store/user'
+// const userStore = useUserStore()
 
 const validateUsername = (rule: any, value: any, callback: (arg0?: Error|undefined) => void) => {
   if (!validUsername(value)) {
@@ -130,7 +131,7 @@ const handleLogin = () => {
     if (valid) {
       loading.value = true
       userStore.login(loginForm).then(() => {
-        // useRouter().push({ path: redirect.value || '/' })
+        useRouter().push({ path: redirect.value || '/' })
         loading.value = false
       }).catch(() => {
         loading.value = false

@@ -1,4 +1,4 @@
-import { login, logout } from '@/api/user'
+import { getInfo, login, logout } from '@/api/user'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import { defineStore } from 'pinia'
 
@@ -25,6 +25,27 @@ export const useUserStore = defineStore({
           this.token = data.token
           setToken(data.token)
           resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+
+    // get user info
+    getInfo() {
+      return new Promise((resolve, reject) => {
+        getInfo(this.token).then(response => {
+          const { data } = response
+
+          if (!data) {
+            return reject('Verification failed, please Login again.')
+          }
+
+          const { username, avatarUrl } = data
+          
+          this.name = username
+          this.avatar = avatarUrl
+          resolve(data)
         }).catch(error => {
           reject(error)
         })

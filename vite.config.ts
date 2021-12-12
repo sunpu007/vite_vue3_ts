@@ -21,8 +21,8 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      [process.env.VITE_APP_BASE_API]: {
-        target: `http://admin-demo.myjerry.cn`,
+      '/api': {
+        target: `http://admin-demo.myjerry.cn/`,
         changeOrigin: true
       },
     }

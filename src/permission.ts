@@ -6,12 +6,14 @@ import NProgress from 'nprogress'
 
 import getPageTitle from '@/utils/get-page-title'
 import { getToken } from '@/utils/auth'
+import { userStore } from './store/user'
+// import { permissionStore } from './store/permission'
 
 NProgress.configure({ showSpinner: false })
 
 const whiteList: string[] = ['/login', '/404']
 
-router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   NProgress.start()
 
   document.title = getPageTitle(to.meta.title)
@@ -23,6 +25,19 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
       NProgress.done()
     } else {
       // TODO 判断是否登录
+      if (userStore.name) {
+        next()
+      } else {
+        userStore.getInfo()
+        // 获取用户信息
+        // const { asyncRoutes } = await userStore.getInfo()
+        // // 生成路由表
+        // const acc = await permissionStore.generateRoutes(asyncRoutes)
+        // router.addRoute
+        // // 追加路由表
+
+        next({ ...to, replace: true })
+      }
     }
   } else {
     if (whiteList.includes(to.path)) {

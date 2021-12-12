@@ -7,6 +7,10 @@ declare module "*.vue" {
   export default component
 }
 
+interface ImportMetaEnv {
+  readonly VITE_APP_BASE_API: string
+}
+
 declare interface Math {
   easeInOutQuad: function
 }
