@@ -12,6 +12,7 @@
         <h3 class="title">
           {{ $t('login.title') }}
         </h3>
+        <lang-select class="set-language" />
       </div>
 
       <el-form-item prop="username">
@@ -68,6 +69,7 @@
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import LangSelect from '@/components/LangSelect/index.vue'
 
 import { validUsername } from '@/utils/validate'
 
@@ -105,13 +107,12 @@ const redirect = ref<string | null | undefined>(undefined)
 
 const route = useRoute()
 watch(route, (route) => {
-    const query = route.query
-    if (query) {
-      redirect.value = query.redirect?.toString()
-    }
-  },
-  { immediate: true }
-)
+  const query = route.query
+  if (query) {
+    redirect.value = query.redirect?.toString()
+  }
+},
+{ immediate: true })
 
 const passwordRef: any = ref(null)
 const showPwd = () => {
@@ -139,7 +140,6 @@ const handleLogin = () => {
     }
   })
 }
-
 
 </script>
 
@@ -235,6 +235,15 @@ $light_gray:#eee;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
+    }
+
+    .set-language {
+      color: #fff;
+      position: absolute;
+      top: 3px;
+      font-size: 18px;
+      right: 0px;
+      cursor: pointer;
     }
   }
 

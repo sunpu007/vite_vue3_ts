@@ -15,7 +15,7 @@ NProgress.configure({ showSpinner: false })
 
 const whiteList: string[] = ['/login', '/404']
 
-router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+router.beforeEach(async(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   if (userStore === null) {
     userStore = useUserStore()
   }

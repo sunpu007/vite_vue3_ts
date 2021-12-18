@@ -1,4 +1,4 @@
-Math.easeInOutQuad = function (t: number, b: number, c: number, d: number) {
+Math.easeInOutQuad = function(t: number, b: number, c: number, d: number) {
   t /= d / 2
   if (t < 1) {
     return c / 2 * t * t + b
@@ -10,8 +10,8 @@ Math.easeInOutQuad = function (t: number, b: number, c: number, d: number) {
 // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
 const requestAnimFrame = (function() {
   return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
- window.setTimeout(callback, 1000 / 60) 
-}
+    window.setTimeout(callback, 1000 / 60)
+  }
 })()
 
 /**

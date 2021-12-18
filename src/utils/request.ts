@@ -15,7 +15,7 @@ export interface ResType<T> {
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API.toString(),
-  timeout: 5000,
+  timeout: 5000
 })
 
 // 请求拦截
@@ -59,7 +59,7 @@ service.interceptors.response.use(
         })
       })
       return Promise.reject(new Error(res.message || 'Error'))
-    } 
+    }
     return res
   },
   error => {

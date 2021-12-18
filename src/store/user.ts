@@ -42,7 +42,7 @@ export const useUserStore = defineStore({
           }
 
           const { username, avatarUrl } = data
-          
+
           this.name = username
           this.avatar = avatarUrl
           resolve(data)
@@ -64,7 +64,7 @@ export const useUserStore = defineStore({
         })
       })
     },
-    
+
     resetToken() {
       return new Promise<void>(resolve => {
         removeToken()
