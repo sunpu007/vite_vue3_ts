@@ -10,7 +10,7 @@
     >
       <div class="title-container">
         <h3 class="title">
-          Login Form
+          {{ $t('login.title') }}
         </h3>
       </div>
 
@@ -21,7 +21,7 @@
         <el-input
           ref="usernameRef"
           v-model="loginForm.username"
-          placeholder="Username"
+          :placeholder="$t('login.username')"
           name="username"
           type="text"
           tabindex="1"
@@ -38,7 +38,7 @@
           ref="passwordRef"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="Password"
+          :placeholder="$t('login.password')"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -59,7 +59,7 @@
         style="width:100%;margin-bottom:30px;"
         @click.prevent="handleLogin"
       >
-        Login
+        {{ $t('login.logIn') }}
       </el-button>
     </el-form>
   </div>

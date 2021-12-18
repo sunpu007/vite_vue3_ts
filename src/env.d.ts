@@ -24,3 +24,7 @@ declare interface Window {
 declare interface ParentNode {
   scrollTop: any
 }
+
+interface NavigatorLanguage {
+  readonly browserLanguage: string
+}

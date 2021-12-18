@@ -1,7 +1,5 @@
 import { createApp } from "vue"
-
 import Cookies from 'js-cookie'
-
 import { createPinia } from "pinia"
 
 import '@/styles/index.scss' // global css
@@ -11,6 +9,10 @@ import App from "./App.vue"
 import svgIcon from './components/svgIcon/index.vue'
 
 const app = createApp(App)
+
+// 注册国际化
+import i18n from "./lang"
+app.use(i18n)
 
 // 注册状态管理
 app.use(createPinia())
