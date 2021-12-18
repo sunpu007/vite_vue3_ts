@@ -6,7 +6,7 @@ import Layout from '@/layout/index.vue'
  * Filter asynchronous routing tables by recursion
  * @param routes asyncRoutes
  */
- export function filterAsyncRoutes(routers: any[]) {
+export function filterAsyncRoutes(routers: any[]) {
   const res = []
 
   routers.forEach(route => {
@@ -54,4 +54,4 @@ export const usePermissionStore = defineStore({
   }
 })
 
-export const permissionStore = usePermissionStore()
+// export const permissionStore = usePermissionStore()

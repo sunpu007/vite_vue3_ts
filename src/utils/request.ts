@@ -2,7 +2,8 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 import { ElMessage, ElMessageBox } from 'element-plus'
 
-import { userStore } from '@/store/user'
+import { useUserStore } from '@/store/user'
+let userStore: any = null
 
 import { getToken } from './auth'
 
@@ -20,6 +21,9 @@ const service = axios.create({
 // 请求拦截
 service.interceptors.request.use(
   (config: AxiosRequestConfig<any>): AxiosRequestConfig<any> => {
+    if (userStore === null) {
+      userStore = useUserStore()
+    }
     if (userStore.token) {
       // @ts-ignore
       config.headers.token = getToken()

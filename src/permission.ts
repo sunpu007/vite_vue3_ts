@@ -6,7 +6,9 @@ import NProgress from 'nprogress'
 
 import getPageTitle from '@/utils/get-page-title'
 import { getToken } from '@/utils/auth'
-import { userStore } from './store/user'
+
+import { useUserStore } from './store/user'
+let userStore: any = null
 // import { permissionStore } from './store/permission'
 
 NProgress.configure({ showSpinner: false })
@@ -14,6 +16,9 @@ NProgress.configure({ showSpinner: false })
 const whiteList: string[] = ['/login', '/404']
 
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+  if (userStore === null) {
+    userStore = useUserStore()
+  }
   NProgress.start()
 
   document.title = getPageTitle(to.meta.title)
