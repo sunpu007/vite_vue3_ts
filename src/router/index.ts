@@ -13,6 +13,7 @@ const constantRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/404',
+    name: '404',
     component: () => import('@/views/404.vue'),
     meta: {
       hidden: true
@@ -20,14 +21,9 @@ const constantRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    name: 'dashboard',
+    component: Layout
+    // redirect: '/dashboard'
   }
 ]
 

@@ -7,6 +7,8 @@ declare module '*.vue' {
   export default component
 }
 
+declare module '*.scss';
+
 interface ImportMetaEnv {
   readonly VITE_APP_BASE_API: string
 }
