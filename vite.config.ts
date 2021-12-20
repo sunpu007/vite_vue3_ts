@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { viteMockServe } from "vite-plugin-mock";
 import path from 'path'
 
 import viteCompression from 'vite-plugin-compression'
@@ -17,6 +18,10 @@ export default defineConfig({
       threshold: 10240,
       algorithm: 'gzip',
       ext: '.gz'
+    }),
+    viteMockServe({
+      mockPath: './mock',
+      supportTs: false
     })
   ],
   server: {
