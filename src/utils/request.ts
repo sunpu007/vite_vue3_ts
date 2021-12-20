@@ -54,7 +54,7 @@ service.interceptors.response.use(
         type: 'warning'
       }).then(_ => {
         // 清除token
-        userStore.resetToken().then(_ => {
+        userStore.resetToken().then(() => {
           location.reload()
         })
       })

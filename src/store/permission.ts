@@ -30,7 +30,8 @@ export function filterAsyncRoutes(routers: any[]) {
 }
 
 const loadView = (view: string) => {
-  return resolve => require([`@/views/${view}`], resolve)
+  // @ts-ignore
+  return (resolve: any) => require([`@/views/${view}`], resolve)
 }
 
 export const usePermissionStore = defineStore({

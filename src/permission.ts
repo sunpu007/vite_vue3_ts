@@ -5,7 +5,7 @@ import router from './router'
 import NProgress from 'nprogress'
 
 import getPageTitle from '@/utils/get-page-title'
-import { getToken } from '@/utils/auth'
+// import { getToken } from '@/utils/auth'
 
 import { useUserStore } from './store/user'
 let userStore: any = null
@@ -13,7 +13,7 @@ let userStore: any = null
 
 NProgress.configure({ showSpinner: false })
 
-const whiteList: string[] = ['/login', '/404', '/']
+// const whiteList: string[] = ['/login', '/404', '/']
 
 router.beforeEach(async(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   if (userStore === null) {
@@ -54,6 +54,6 @@ router.beforeEach(async(to: RouteLocationNormalized, from: RouteLocationNormaliz
   // }
 })
 
-router.afterEach(_ => {
+router.afterEach(() => {
   NProgress.done()
 })
