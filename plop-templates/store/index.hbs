@@ -1,0 +1,11 @@
+import { defineStore } from 'pinia'
+
+export const useAppStore = defineStore({
+  id: '{{ name }}',
+  {{#if state}}
+  state: () => ({}),
+  {{/if}}
+  {{#if actions}}
+  actions: {}
+  {{/if}}
+})
