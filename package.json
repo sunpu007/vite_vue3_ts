@@ -6,6 +6,7 @@
     "build:prod": "vue-tsc --noEmit && vite build",
     "build:stage": "vue-tsc --noEmit && vite build --mode staging",
     "serve": "vite preview",
+    "new": "plop",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx"
   },
   "dependencies": {
@@ -32,6 +33,7 @@
     "husky": "^7.0.4",
     "jest": "^27.4.3",
     "lint-staged": "^12.1.2",
+    "plop": "^2.3.0",
     "sass": "^1.44.0",
     "sass-loader": "^12.3.0",
     "svg-sprite-loader": "^6.0.11",
